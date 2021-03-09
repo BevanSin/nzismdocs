@@ -16,6 +16,8 @@ We also published a set of tenets to improve the quality of a workload once it h
 
 An area that both NZ Government and Microsoft recognised that could assist New Zealand agencies and companies in cloud adoption was a translation of the NZ ISM Restricted into a set of policies that could allow the implementor a method of measuring their environment against the standard defined by the NZ ISM.  To that end, Microsoft and the GCSB worked together to establish an Azure Policy Initiative and Azure Blueprint to be published in the Azure gallery.  This allows any agency or New Zealand company to apply the standard to their Azure environment, and assess their level of compliance against a defined NZ Government standard.
 
+The outcome of this is creating a known good baseline that every agency can adhere to, raising the base level of security across all New Zealand government.  As this is also policy as code, the process for updating and adjusting to a fast moving threat landscape becomes easier, ensuring that the risk can be reduced.  As this baseline is publically available in the Azure gallery, New Zealand business can also adopt it, raising the bar across all of New Zealand.
+
 ## What is an Azure Blueprint?
 
 Just as a blueprint allows an engineer or an architect to sketch a project's design parameters, Azure Blueprints enables cloud architects and central information technology groups to define a repeatable set of Azure resources that implements and adheres to an organization's standards, patterns, and requirements. Azure Blueprints makes it possible for development teams to rapidly build and stand up new environments with trust they're building within organizational compliance with a set of built-in components, such as networking, to speed up development and delivery.
@@ -36,7 +38,9 @@ This allows an organisation to ensure that all resources confirm to an agreed st
 ## What is a Policy Initiative?
 Azure Policy evaluates resources in Azure by comparing the properties of those resources to business rules. These business rules, described in JSON format, are known as policy definitions. To simplify management, several business rules can be grouped together to form a [policy initiative][AzurePolicyInit]. Once your business rules have been formed, the policy definition or initiative is assigned to any scope of resources that Azure supports, such as management groups, subscriptions, resource groups, or individual resources. The assignment applies to all resources within the Resource Manager scope of that assignment. Subscopes can be excluded, if necessary. For more information, see [Scope in Azure Policy][AzurePolicyScope].
 
-Multiple policies can be deployed against the same subscriptions.  Agencies that must adhere to government regulation, industry regulation and their own internal policies can layer them to ensure that they adhere to all.  You can also disable enforcement on some, to ensure that you are reporting on compliance only and reducing the complexity of layers of enforcement.  [Planning policy layering][AzurePolEvaluate] in this way requires some thought and design to ensure there is no policy collision but a simple way to manage it is to use naming conventions on the policy objects to identify which ones you are enforcing and which ones you are not.
+Multiple policies can be deployed against the same subscriptions.  Agencies that must adhere to government regulation, industry regulation and their own internal policies can layer them to ensure that they adhere to all.  You can also disable enforcement on some, to ensure that you are reporting on compliance only and reducing the complexity of layers of enforcement.  [Planning policy layering][AzurePolEvaluate] in this way requires some thought and design to ensure there is no policy collision but a simple way to manage it is to use naming conventions on the policy objects to identify which ones you are enforcing and which ones you are not.  Disabling enforcement mode is also a good way of testing the impact of new settings.
+
+If you are also training your engineers to understand DevOps workflows, managing policy via code repository is a good way of starting them on that journey.  You can manage your Policy templates as code in a repo of your choice, and deploy it directly [to Azure using a DevOps pipeline][AzurePolascode].
 
 <img src="images/management.png" alt="Management" title="Management" width="50%" />
 
@@ -80,9 +84,6 @@ This step creates a copy of the NZISM blueprint definition in the selected manag
 At this point, scroll down and you will see each individual policy item that is contained in the blueprint, along with its setting.  Some of these settings are configurable as an Option, and some require configuration before you can publish the blueprint. These are the items you must configure before moving on:
 * List of users that must be included in Windows VM Administrators group
 * List of users that must be excluded from Windows VM Administrators group
-* List of resource types that should have diagnostic logs enabled
-* Allowed locations for resources (deployments to other locations will be denied)
-* Allowed locations for resource groups (deployments to other locations will be denied)
 * Log Analytics workspace ID for VM agent reporting
 
 This is the list of items that are optional - there are 3 of each of the following settings and they pertain to Log analytics agent deployment and Guest Configuration agent in Virtual Machines and Virtual Machine Scale Sets.  See the [Built-in Policy Definitions][AzurePolicyBuiltin] page for more information.
@@ -97,22 +98,61 @@ This will now deploy the artifacts in the Azure Blueprint to the target subscrip
 
 In some cases, you may want to just deploy the Policy Initiative instead of the blueprint.  This could be because you do not need all of the contents of the blueprint, and just need to report on compliance against the policy.  If you want to deploy the initiative on its own to a specific location instead of the blueprint use these instructions.
 
-1. Go to the Azure portal to assign policies. Search for and select Policy.
+1. Select All services in the left pane. Search for and select Policy.
 2. Click on Definitions
 3. In the Search field type New Zealand and the New Zealand ISM Restricted policy should be listed
 4. Click the ellipsis at the end of the line and select Assign
 5. Set the scope by selecting the Subscription this policy will apply to - alternatively you can apply it to a Management group to ensure it applies to all subscriptions
-> Note: The Policy Enforcement switch here allows you to disable any Enforcement policies and only return compliance if required.  At the time of writing all explicit deny policies had been removed from this template as it is primarily designed to report on compliance, and not enforce, a specific security template.
+> Note: The Policy Enforcement switch here allows you to disable any Enforcement policies and only return compliance if required.  At the time of writing all explicit deny policies had been removed from this template as it is primarily designed to report on compliance, and not enforce, a specific security template.  This is also a good way of testing the impact of new policies.
+6. Click Parameters.  Some of these parameters are configurable as an Option, and some require configuration before you can publish the blueprint. These are the items you must configure before moving on:
+* List of users that must be included in Windows VM Administrators group
+* List of users that must be excluded from Windows VM Administrators group
+* List of resource types that should have diagnostic logs enabled
+* Log Analytics workspace ID for VM agent reporting
+
+This is the list of items that are optional - there are 3 of each of the following settings and they pertain to Log analytics agent deployment and Guest Configuration agent in Virtual Machines and Virtual Machine Scale Sets.  See the [Built-in Policy Definitions][AzurePolicyBuiltin] page for more information.
+* Optional: List of custom VM images that have supported Windows OS to add to scope additional to the images in the gallery
+* Optional: List of custom VM images that have supported Linux OS to add to scope additional to the images in the gallery
+
+7. Click Review and Create.  Notice on this last screen the specific settings that require input are listed here in the Parameters section along with your entries.  Its a good way to ensure you have configured the correct parameters.
+8. Click Create.
 
 ## How to measure compliance
 
+Once the policy has deployed it takes some time to review all the resources and assess compliance.  Once complete, you can review this in the core Policy screen
 
+<img src="images/policy.png" alt="Policy" title="Policy" width="50%" />
+
+On the overview screen, click on the NZ ISM Policy to open the Initiative Compliance dashboard
+
+<img src="images/policy1.png" alt="Policy" title="Policy" width="50%" />
+
+You should see an overview of compliance, with the non-compliant controls listed below.  If you click on one of the non-compliant controls it will take you to a detail screen explaining the NZ ISM control that is non-compliant (with a link to read more).  If you click on Policies it will show the Azure Policies that are linked to this control, and which ones are not compliant.  If you click on Resource Compliance this shows the specific resources that are not meeting the required policy.
 
 ## How to remediate
 
+Some policies have automated remediation tasks you can kick off from the Policy console.  From the Initiative Compliance dashboard, click on Create Remediation Task at the top of the screen.
+In the drop down box this will list the specific policies you can Remediate (e.g. Deploy Dependency agent for Windows virtual machines)
+It will also list the Resources this remediation task will apply to, so when you click Remediate it will initiate the task on all of those resources.  In the screenshot below, this is an example of deploying the dependency agent for a non-compliant Windows machine.
+
+<img src="images/remediation.png" alt="Policy" title="Policy" width="50%" />
+
 ## How to override
 
+For some environments or resources, some policies or configurations may not be valid or required.  Examples of this might be where you are achieving compliance through a different method like monitoring VM resources through the use of a 3rd party security system.  If thats the case, you can override the specific control permanently or for a defined term with an explanation.  This ensure the override process is auditable and reportable.
+
+From the Initiative Compliance dashboard, click on Create Exemption Task at the top of the screen
+This walks you through a series of screens to configure the category and expiration of the Exemption, and the specific scope and policies that this exemption covers.
+
 ## How to keep up to date
+
+As feedback is received from the community, and as new policy settings are developed and the NZ ISM evolves to address new threats, so will the sample template change.  To keep up to date, you can simply redeploy the new version of the blueprint or Policy Initiative in the same way that you have previously deployed it, and remove the old version.  It is recommended that you follow the Microsoft recommended practice for Policy deployment 
+
+![AzurePolicyWorkflow]
+
+## Coming soon!
+
+Based on feedback we have already received we are working on bringing the NZ ISM to the Security Center reporting for Regulatory Compliance.  This will allow organisations to export the report as a CSV or PDF if required.  [See here for more information on how this works][SecurityCenterRegComp].
 
 ## Feedback
 An important aspect of this blueprint and the policy initiative is to establish a feedback loop between the government agencies, the policy creators and the technology partners.  Working together as a community will ensure that as our technology evolves, so does the governance and management strategy.  It also means that all participants can leverage the shared learnings from establishment through to consumption.
@@ -126,6 +166,7 @@ This work has been and continues to be a team effort so thanks to the staff at t
 
 ## Reference Links
 * [New Zealand ISM][NZISM]
+* [New Zealand Strategy for a Digital Public Service][NZGovDigital]
 * [Azure Blueprints Documentation][AzureBP]
 * [Azure Blueprint Samples][AzureBPSamples]
 * [David White @ Theta - Article on implementing the NZISM Policy Initiative][DavidWhite]
@@ -158,3 +199,6 @@ This work has been and continues to be a team effort so thanks to the staff at t
 [AzureResLock]: https://docs.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking
 [AzurePolicyBuiltin]: https://docs.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies
 [AzurePolEvaluate]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/evaluate-impact
+[AzurePolascode]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/policy-as-code
+[SecurityCenterRegComp]: https://docs.microsoft.com/en-us/azure/security-center/security-center-compliance-dashboard
+[AzurePolicyWorkflow]: https://docs.microsoft.com/en-us/azure/governance/policy/media/policy-as-code/policy-as-code-workflow.png
