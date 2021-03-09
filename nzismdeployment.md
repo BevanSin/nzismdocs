@@ -16,7 +16,7 @@ We also published a set of tenets to improve the quality of a workload once it h
 
 An area that both NZ Government and Microsoft recognised that could assist New Zealand agencies and companies in cloud adoption was a translation of the NZ ISM Restricted into a set of policies that could allow the implementor a method of measuring their environment against the standard defined by the NZ ISM.  To that end, Microsoft and the GCSB worked together to establish an Azure Policy Initiative and Azure Blueprint to be published in the Azure gallery.  This allows any agency or New Zealand company to apply the standard to their Azure environment, and assess their level of compliance against a defined NZ Government standard.
 
-The outcome of this is creating a known good baseline that every agency can adhere to, raising the base level of security across all New Zealand government.  As this is also policy as code, the process for updating and adjusting to a fast moving threat landscape becomes easier, ensuring that the risk can be reduced.  As this baseline is publically available in the Azure gallery, New Zealand business can also adopt it, raising the bar across all of New Zealand.
+The outcome of this is creating a known good baseline that every agency can adhere to, raising the base level of security across all New Zealand government.  As this is also policy as code, the process for updating and adjusting to a fast moving threat landscape becomes easier, ensuring that the risk can be reduced.  As this baseline is publicly available in the Azure gallery, New Zealand business can also adopt it, raising the bar across all of New Zealand.
 
 ## What is an Azure Blueprint?
 
@@ -146,9 +146,11 @@ This walks you through a series of screens to configure the category and expirat
 
 ## How to keep up to date
 
-As feedback is received from the community, and as new policy settings are developed and the NZ ISM evolves to address new threats, so will the sample template change.  To keep up to date, you can simply redeploy the new version of the blueprint or Policy Initiative in the same way that you have previously deployed it, and remove the old version.  It is recommended that you follow the Microsoft recommended practice for Policy deployment 
+As feedback is received from the community, and as new policy settings are developed and the NZ ISM evolves to address new threats, so will the sample template change.  To keep up to date, you can simply redeploy the new version of the blueprint or Policy Initiative in the same way that you have previously deployed it, and remove the old version.  It is recommended that you follow the Microsoft recommended practice for Policy deployment.
 
 ![AzurePolicyWorkflow]
+
+Using Azure DevOps to check in the code, version it and deploy it to Azure is an automated and auditable process that is highly recommended to streamline this process.
 
 ## Coming soon!
 
