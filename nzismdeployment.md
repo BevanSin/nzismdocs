@@ -14,7 +14,7 @@ Microsoft has worked with many customers to produce artifacts that enable them t
 
 We also published a set of tenets to improve the quality of a workload once it has been established in Azure called the [Microsoft Azure Well-Architected Framework][WAF].  The framework consists of five pillars of architecture excellence: Cost Optimization, Operational Excellence, Performance Efficiency, Reliability, and Security.
 
-An area that both Government and Microsoft recognised that could assist New Zealand agencies and companies in cloud adoption was a translation of the NZ ISM Restricted into a set of policies that could allow the implementor a method of measuring their environment against the standard defined by the NZ ISM.  To that end, Microsoft and the GCSB worked together to establish an Azure Policy Initiative and Azure Blueprint to be published in the Azure gallery.  This allows any agency or New Zealand company to apply the standard to their Azure environment, and assess their level of compliance against a defined NZ Government standard.
+An area that both NZ Government and Microsoft recognised that could assist New Zealand agencies and companies in cloud adoption was a translation of the NZ ISM Restricted into a set of policies that could allow the implementor a method of measuring their environment against the standard defined by the NZ ISM.  To that end, Microsoft and the GCSB worked together to establish an Azure Policy Initiative and Azure Blueprint to be published in the Azure gallery.  This allows any agency or New Zealand company to apply the standard to their Azure environment, and assess their level of compliance against a defined NZ Government standard.
 
 ## What is an Azure Blueprint?
 
@@ -35,6 +35,8 @@ This allows an organisation to ensure that all resources confirm to an agreed st
 
 ## What is a Policy Initiative?
 Azure Policy evaluates resources in Azure by comparing the properties of those resources to business rules. These business rules, described in JSON format, are known as policy definitions. To simplify management, several business rules can be grouped together to form a [policy initiative][AzurePolicyInit]. Once your business rules have been formed, the policy definition or initiative is assigned to any scope of resources that Azure supports, such as management groups, subscriptions, resource groups, or individual resources. The assignment applies to all resources within the Resource Manager scope of that assignment. Subscopes can be excluded, if necessary. For more information, see [Scope in Azure Policy][AzurePolicyScope].
+
+Multiple policies can be deployed against the same subscriptions.  Agencies that must adhere to government regulation, industry regulation and their own internal policies can layer them to ensure that they adhere to all.  You can also disable enforcement on some, to ensure that you are reporting on compliance only and reducing the complexity of layers of enforcement.  [Planning policy layering][AzurePolEvaluate] in this way requires some thought and design to ensure there is no policy collision but a simple way to manage it is to use naming conventions on the policy objects to identify which ones you are enforcing and which ones you are not.
 
 <img src="images/management.png" alt="Management" title="Management" width="50%" />
 
@@ -72,27 +74,39 @@ This step creates a copy of the NZISM blueprint definition in the selected manag
 4. Select the subscriptions you want this blueprint to be assigned
 5. In the Assignment Name field type a unique name for this assignment
 6. In the Location field select Australia East
-7. 
+7. Select the version you created
+8. Leave the Lock Assignment on Dont Lock (for more information on this setting see [Resource Lock Assignment][AzureResLock])
 
+At this point, scroll down and you will see each individual policy item that is contained in the blueprint, along with its setting.  Some of these settings are configurable as an Option, and some require configuration before you can publish the blueprint. These are the items you must configure before moving on:
+* List of users that must be included in Windows VM Administrators group
+* List of users that must be excluded from Windows VM Administrators group
+* List of resource types that should have diagnostic logs enabled
+* Allowed locations for resources (deployments to other locations will be denied)
+* Allowed locations for resource groups (deployments to other locations will be denied)
+* Log Analytics workspace ID for VM agent reporting
 
-Select Publish blueprint at the top of the page. In the new pane on the right, provide Version as 1.0 for your copy of the blueprint sample. This property is useful for if you make a modification later. Provide Change notes such as "First version published from the resource groups with RBAC blueprint sample." Then select Publish at the bottom of the page.
+This is the list of items that are optional - there are 3 of each of the following settings and they pertain to Log analytics agent deployment and Guest Configuration agent in Virtual Machines and Virtual Machine Scale Sets.  See the [Built-in Policy Definitions][AzurePolicyBuiltin] page for more information.
+* Optional: List of custom VM images that have supported Windows OS to add to scope additional to the images in the gallery
+* Optional: List of custom VM images that have supported Linux OS to add to scope additional to the images in the gallery
 
-This step makes it possible to assign the blueprint to a subscription. Once published, changes can still be made. Additional changes require publishing with a new Version value to track differences between different versions of the same blueprint definition.
+9. Click Assign
 
-Once the Publishing blueprint definition succeeded portal notification appears, move to the next step.
+This will now deploy the artifacts in the Azure Blueprint to the target subscription.  In this case the Policy Initiative for NZ ISM Restricted will be applied.
 
-Assign the sample copy
-Once the copy of the blueprint sample has been successfully Published, it can be assigned to a subscription within the management group it was saved to. This step is where parameters are provided to make each deployment of the copy of the blueprint sample unique.
+### Deploy the Policy Initiative on its own
 
-Select All services in the left pane. Search for and select Blueprints.
+In some cases, you may want to just deploy the Policy Initiative instead of the blueprint.  This could be because you do not need all of the contents of the blueprint, and just need to report on compliance against the policy.  If you want to deploy the initiative on its own to a specific location instead of the blueprint use these instructions.
 
-Select the Blueprint definitions page on the left. Use the filters to find the two-rgs-with-role-assignments blueprint definition and then select it.
-
-Select Assign blueprint at the top of the blueprint definition page.
-
-Provide the parameter values for the blueprint assignment: 
+1. Go to the Azure portal to assign policies. Search for and select Policy.
+2. Click on Definitions
+3. In the Search field type New Zealand and the New Zealand ISM Restricted policy should be listed
+4. Click the ellipsis at the end of the line and select Assign
+5. Set the scope by selecting the Subscription this policy will apply to - alternatively you can apply it to a Management group to ensure it applies to all subscriptions
+> Note: The Policy Enforcement switch here allows you to disable any Enforcement policies and only return compliance if required.  At the time of writing all explicit deny policies had been removed from this template as it is primarily designed to report on compliance, and not enforce, a specific security template.
 
 ## How to measure compliance
+
+
 
 ## How to remediate
 
@@ -141,3 +155,6 @@ This work has been and continues to be a team effort so thanks to the staff at t
 [AppArch]: https://docs.microsoft.com/en-us/azure/architecture/guide/
 [DavidWhite]: https://techcommunity.microsoft.com/t5/azure/azure-policy-new-zealand-information-security-manual-nzism/m-p/2144825
 [AzureDataRest]: https://docs.microsoft.com/en-us/azure/security/fundamentals/encryption-atrest
+[AzureResLock]: https://docs.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking
+[AzurePolicyBuiltin]: https://docs.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies
+[AzurePolEvaluate]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/evaluate-impact
