@@ -13,6 +13,8 @@ Requires that prerequisites are deployed to the policy assignment scope. For det
 
 Requires that prerequisites are deployed to the policy assignment scope. For details, visit https://aka.ms/gcpol. Machines are non-compliant if the local Administrators group contains members that are not listed in the policy parameter.
 
+**Information Security Manual**
+
 These policy settings link to [16.1.32 System User Identification CID. 1829][CID1829].
 
 ## Explanation

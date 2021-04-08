@@ -9,15 +9,17 @@ This is a single policy setting that requires a parameter when deploying the Pol
 
 Enable Azure Monitor for the virtual machines (VMs) in the specified scope (management group, subscription or resource group). Takes Log Analytics workspace as parameter.
 
-These policy settings link to [16.6.8 System User Identification CID 2006][CID2006].
+**Information Security Manual**
 
-Agencies MUST develop and document logging requirements covering:
+This policy setting links to [16.6.8 System User Identification CID 2006][CID2006].
 
-* the logging facility, including:
-* log server availability requirements; and
-* the reliable delivery of log information to the log server;
-* the list of events associated with a system or software component to be logged; and
-event log protection and archival requirements.
+*Agencies MUST develop and document logging requirements covering:*
+
+* *the logging facility, including:*
+* *log server availability requirements; and*
+* *the reliable delivery of log information to the log server;*
+* *the list of events associated with a system or software component to be logged; and
+event log protection and archival requirements.*
 
 ## Explanation
 

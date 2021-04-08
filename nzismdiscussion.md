@@ -10,7 +10,7 @@ In the process of developing and deploying the blueprint, and the associated pol
 To that end, we have collected all of the items that it is felt require further discussion in this document, with links to the relevant sections of NZ ISM or the Azure documentation.  This will help users of the NZ ISM Restricted Blueprint get a deeper understanding of the underlying technology or Azure Policy, Governance and Management techniques.
 
 **DISCLAIMER** 
-The information included here is supplemental to the core Azure documentation and is meant to bridge a gap between the Policy initiative, the technical documentation and usage and implementation.  It is inferred that the technical documentation on Azure Docs is the first stop if you are looking for any information on Azure and Microsoft recommended practices.
+The information included here is supplemental to the core Azure documentation and is meant to bridge a gap between the technical documentation and implementation.  It is inferred that the technical documentation on Azure Docs is the first stop if you are looking for any information on Azure and Microsoft recommended practices.
 
 ## Overarching concepts
 
@@ -31,6 +31,8 @@ Click on the links below to view detail about a specific policy or question that
 [Policy Setting - Enable Azure Monitor for VMs][policyenableam]
 * Enable Azure Monitor for VMs
 
+[Policy Setting - Audit Diagnostic Setting][policyauditdiag]
+* Audit Diagnostic Setting is a policy that applies to a lot of resources
 
 
 
@@ -38,8 +40,14 @@ Click on the links below to view detail about a specific policy or question that
 
 
 
+## Trigger a policy Rescan
+By default, audit policy is run every 24 hours to assess compliance.  If you make a change and want to see its effect straight away, you can run this by using the [az policy][AZTriggerScan] command.  
 
+To run a refresh of all policies across the current subscription, open a Cloud Shell and type:
 
+    az policy state trigger-scan
+
+You can filter that by Resource Group, or target a specific subscription as well.
 
 ## Reference Links
 * [New Zealand ISM][NZISM]
@@ -53,6 +61,7 @@ Click on the links below to view detail about a specific policy or question that
 [Management]: images/management.png
 [policyvmadmins]: https://github.com/BevanSin/nzismdocs/blob/master/policyvmadmins.md
 [policyenableam]: https://github.com/BevanSin/nzismdocs/blob/master/policyenableam.md
+[policyauditdiag]: https://github.com/BevanSin/nzismdocs/blob/master/policyauditdiag.md
 
 <!-- External -->
 [NZISM]: https://www.nzism.gcsb.govt.nz/ism-document
@@ -82,3 +91,4 @@ Click on the links below to view detail about a specific policy or question that
 [AzurePolicyWorkflow]: https://docs.microsoft.com/en-us/azure/governance/policy/media/policy-as-code/policy-as-code-workflow.png
 [CID1829]: https://www.nzism.gcsb.govt.nz/ism-document#1829
 [AzureArc]: https://docs.microsoft.com/en-us/azure/azure-arc/
+[AZTriggerScan]: https://docs.microsoft.com/en-us/cli/azure/policy/state?view=azure-cli-latest#az_policy_state_trigger_scan
