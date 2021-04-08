@@ -86,8 +86,6 @@ Check [this example on how to configure policy via a devops pipeline][AzurePolDe
 
 <!-- Local -->
 [Banner]: images/banner.png
-[Blueprint]: images/blueprint.png
-[Management]: images/management.png
 [AuditDiag]: images/policyauditdiag1.png
 [Console1]: images/policyauditdiag2.png
 [Console2]: images/policyauditdiag3.png
@@ -99,28 +97,7 @@ Check [this example on how to configure policy via a devops pipeline][AzurePolDe
 [NZISM]: https://www.nzism.gcsb.govt.nz/ism-document
 [AzureBP]: https://docs.microsoft.com/en-us/azure/governance/blueprints/overview
 [AzureBPSamples]: https://docs.microsoft.com/en-us/azure/governance/blueprints/samples/
-[AzurePolicy]: https://docs.microsoft.com/en-us/azure/governance/policy/overview/
-[AzurePolicyInit]: https://docs.microsoft.com/en-us/azure/governance/policy/overview#initiative-definition
-[AzurePolicyScope]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/scope
-[ARMTemplate]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/
-[AzureRG]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups
-[AzureRBAC]: https://docs.microsoft.com/en-us/azure/role-based-access-control/overview
-[GCSB]: https://www.gcsb.govt.nz/
-[NZISMPolicy]: https://docs.microsoft.com/en-us/azure/governance/policy/samples/new-zealand-ism
-[NZGovCC]: https://docs.microsoft.com/en-us/compliance/regulatory/offering-nz-cc-framework-nz
 [NZGovDigital]: https://www.digital.govt.nz/digital-government/strategy/strategy-summary/strategy-for-a-digital-public-service/
-[WAF]: https://docs.microsoft.com/en-us/azure/architecture/framework/
-[CAF]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/
-[LZ]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/
-[AppArch]: https://docs.microsoft.com/en-us/azure/architecture/guide/
-[DavidWhite]: https://techcommunity.microsoft.com/t5/azure/azure-policy-new-zealand-information-security-manual-nzism/m-p/2144825
-[AzureDataRest]: https://docs.microsoft.com/en-us/azure/security/fundamentals/encryption-atrest
-[AzureResLock]: https://docs.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking
-[AzurePolicyBuiltin]: https://docs.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies
-[AzurePolEvaluate]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/evaluate-impact
-[AzurePolascode]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/policy-as-code
-[SecurityCenterRegComp]: https://docs.microsoft.com/en-us/azure/security-center/security-center-compliance-dashboard
-[AzurePolicyWorkflow]: https://docs.microsoft.com/en-us/azure/governance/policy/media/policy-as-code/policy-as-code-workflow.png
 [CID1829]: https://www.nzism.gcsb.govt.nz/ism-document#1829
 [CID2006]: https://www.nzism.gcsb.govt.nz/ism-document#2006
 [CID2001]: https://www.nzism.gcsb.govt.nz/ism-document#2001
@@ -130,4 +107,4 @@ Check [this example on how to configure policy via a devops pipeline][AzurePolDe
 [GitAuditDiagSetting]: https://github.com/Azure/azure-policy/tree/master/samples/Monitoring
 [AzurePolDeploy]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/effects#deployifnotexists-properties
 [AzureMonitorScale]: https://docs.microsoft.com/en-us/azure/azure-monitor/deploy-scale
-[AzurePolDevOps]: https://techcommunity.microsoft.com/t5/azure-paas-blog/azure-policy-perform-policy-operations-through-azure-devops/ba-p/2045515#:~:text=Login%20to%20your%20Azure%20DevOps%20Organization%20and%20select,Select%20Azure%20Policy%20Deployment%20and%20Click%20on%20Apply
+[AzurePolDevOps]: https://techcommunity.microsoft.com/t5/azure-paas-blog/azure-policy-perform-policy-operations-through-azure-devops/ba-p/2045515

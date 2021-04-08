@@ -40,34 +40,11 @@ Alternatively, if you are managing this in another way, you can simply enter a d
 
 <!-- Local -->
 [Banner]: images/banner.png
-[Blueprint]: images/blueprint.png
-[Management]: images/management.png
 
 <!-- External -->
 [NZISM]: https://www.nzism.gcsb.govt.nz/ism-document
 [AzureBP]: https://docs.microsoft.com/en-us/azure/governance/blueprints/overview
 [AzureBPSamples]: https://docs.microsoft.com/en-us/azure/governance/blueprints/samples/
-[AzurePolicy]: https://docs.microsoft.com/en-us/azure/governance/policy/overview/
-[AzurePolicyInit]: https://docs.microsoft.com/en-us/azure/governance/policy/overview#initiative-definition
-[AzurePolicyScope]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/scope
-[ARMTemplate]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/
-[AzureRG]: https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups
-[AzureRBAC]: https://docs.microsoft.com/en-us/azure/role-based-access-control/overview
-[GCSB]: https://www.gcsb.govt.nz/
-[NZISMPolicy]: https://docs.microsoft.com/en-us/azure/governance/policy/samples/new-zealand-ism
-[NZGovCC]: https://docs.microsoft.com/en-us/compliance/regulatory/offering-nz-cc-framework-nz
 [NZGovDigital]: https://www.digital.govt.nz/digital-government/strategy/strategy-summary/strategy-for-a-digital-public-service/
-[WAF]: https://docs.microsoft.com/en-us/azure/architecture/framework/
-[CAF]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/
-[LZ]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/
-[AppArch]: https://docs.microsoft.com/en-us/azure/architecture/guide/
-[DavidWhite]: https://techcommunity.microsoft.com/t5/azure/azure-policy-new-zealand-information-security-manual-nzism/m-p/2144825
-[AzureDataRest]: https://docs.microsoft.com/en-us/azure/security/fundamentals/encryption-atrest
-[AzureResLock]: https://docs.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking
-[AzurePolicyBuiltin]: https://docs.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies
-[AzurePolEvaluate]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/evaluate-impact
-[AzurePolascode]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/policy-as-code
-[SecurityCenterRegComp]: https://docs.microsoft.com/en-us/azure/security-center/security-center-compliance-dashboard
-[AzurePolicyWorkflow]: https://docs.microsoft.com/en-us/azure/governance/policy/media/policy-as-code/policy-as-code-workflow.png
 [CID1829]: https://www.nzism.gcsb.govt.nz/ism-document#1829
 [AzureArc]: https://docs.microsoft.com/en-us/azure/azure-arc/
