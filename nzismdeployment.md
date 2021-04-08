@@ -163,6 +163,8 @@ We welcome feedback on things that can improve the artifact's we have published.
 
 To that end, for all feedback or questions on the NZ ISM Restricted Azure Blueprint and the Policy Initiative, please feel free to contact me at bevan.sinclair@microsoft.com, or simply talk to your Microsoft account team who can assist.  For feedback on the NZ ISM Restricted standard itself please send all requests to nzism@gcsb.govt.nz.
 
+Any items that merit more discussion, or we identify as items that the community would benefit with more in depth understanding can be found in the other markdown document [NZ ISM Discussion][NZISMDiscussion]
+
 ## Thanks to
 This work has been and continues to be a team effort so thanks to the staff at the New Zealand GCSB and NCSC, the agencies who gave their time to pilot the policies, and the internal Microsoft team.  Together we are all working towards setting a great baseline of security for all of New Zealand in the (long white) Cloud.  Also thanks to the Linked In community who have proffered valuable insights and shared the content (@davidwhitenz at Theta!).
 
@@ -204,3 +206,4 @@ This work has been and continues to be a team effort so thanks to the staff at t
 [AzurePolascode]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/policy-as-code
 [SecurityCenterRegComp]: https://docs.microsoft.com/en-us/azure/security-center/security-center-compliance-dashboard
 [AzurePolicyWorkflow]: https://docs.microsoft.com/en-us/azure/governance/policy/media/policy-as-code/policy-as-code-workflow.png
+[NZISMDiscussion]: https://github.com/BevanSin/nzismdocs/blob/master/nzismdiscussion.md
