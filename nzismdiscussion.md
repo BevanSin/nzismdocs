@@ -25,11 +25,10 @@ Just to ensure that the language used in this document is understood, there are 
 Click on the links below to view detail about a specific policy or question that has been raised.  Please let me know if theres something you need to be discussed, or should be added to the documentation.
 
 [Policy Setting - Users included\excluded in VM Administrators Group][policyvmadmins]
-* Audit Windows machines missing any of specified members in the Administrators group
-* Audit Windows machines that have extra accounts in the Administrators group
+* What are these two policies used for and why?
 
 [Policy Setting - Enable Azure Monitor for VMs][policyenableam]
-* Enable Azure Monitor for VMs
+* Is this a requirement or is it optional?
 
 [Policy Setting - Audit Diagnostic Setting][policyauditdiag]
 * Audit Diagnostic Setting is a policy that applies to a lot of resources
@@ -37,7 +36,8 @@ Click on the links below to view detail about a specific policy or question that
 [Policy Setting - MFA enabled for write access accounts][policymfawrite]
 * MFA enabled for write access rather than role access
 
-
+[Policy Setting - WAF enabled for Application Gateway][policywafenabled]
+* Is the WAF required on all App Gateways?
 
 ## Trigger a policy Rescan
 By default, audit policy is run every 24 hours to assess compliance.  If you make a change and want to see its effect straight away, you can run this by using the [az policy][AZTriggerScan] command.  
@@ -60,6 +60,7 @@ You can filter that by Resource Group, or target a specific subscription as well
 [policyenableam]: https://github.com/BevanSin/nzismdocs/blob/master/policyenableam.md
 [policyauditdiag]: https://github.com/BevanSin/nzismdocs/blob/master/policyauditdiag.md
 [policymfawrite]: https://github.com/BevanSin/nzismdocs/blob/master/policymfawrite.md
+[policywafenabled]: https://github.com/BevanSin/nzismdocs/blob/master/policywafenabled.md
 
 <!-- External -->
 [NZISM]: https://www.nzism.gcsb.govt.nz/ism-document
