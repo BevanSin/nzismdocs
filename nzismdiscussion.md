@@ -1,4 +1,4 @@
-# New Zealand ISM Restricted Azure Blueprint
+# NZ ISM Azure Blueprint FAQ
 ![banner]
 
 <br/>
