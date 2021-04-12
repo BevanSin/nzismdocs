@@ -152,9 +152,15 @@ As feedback is received from the community, and as new policy settings are devel
 
 Using Azure DevOps to check in the code, version it and deploy it to Azure is an automated and auditable process that is highly recommended to streamline this process.
 
-## Coming soon!
+## Security Center and Exporting a report
 
-Based on feedback we have already received we are working on bringing the NZ ISM to the Security Center reporting for Regulatory Compliance.  This will allow organisations to export the report as a CSV or PDF if required.  [See here for more information on how this works][SecurityCenterRegComp].
+The NZ ISM Policy Inititiative is now available as a built in compliance report in the Azure Security center.
+
+![Dashboard]
+
+You can view your compliance as a more detailed dashboard, and also export this as a PDF or CSV.
+
+[See here for more information on how this works][SecurityCenterRegComp].
 
 ## Feedback
 An important aspect of this blueprint and the policy initiative is to establish a feedback loop between the government agencies, the policy creators and the technology partners.  Working together as a community will ensure that as our technology evolves, so does the governance and management strategy.  It also means that all participants can leverage the shared learnings from establishment through to consumption.
@@ -179,6 +185,7 @@ This work has been and continues to be a team effort so thanks to the staff at t
 [Banner]: images/banner.png
 [Blueprint]: images/blueprint.png
 [Management]: images/management.png
+[Dashboard]: images/securitydashboard.png
 
 <!-- External -->
 [NZISM]: https://www.nzism.gcsb.govt.nz/ism-document
