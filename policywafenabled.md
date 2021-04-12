@@ -39,6 +39,8 @@ The second is your own risk and compliance assessment capability - this is your 
 
 If you determine that it is not required, you can create an exemption in the Azure Policy console for that resource, and document why it is not required.
 
+The other thing to understand is that you shouldn't require this policy initiative in environments such as Sandpit or Development if they do not contain information that requires the controls included in the NZ ISM Restricted template.  I highly recommend you review the Management Group structure design guidance in the [Enterprise Scale architecture documentation here][AzureMgmtGroupDesign].  This shows how you should lay out the management groups and subscriptions in your Azure environment, which will allow you to apply policy at a top level to ensure compliance across the organisation.
+
 ## Reference Links
 * [New Zealand ISM][NZISM]
 * [New Zealand Strategy for a Digital Public Service][NZGovDigital]
@@ -55,3 +57,4 @@ If you determine that it is not required, you can create an exemption in the Azu
 [NZGovDigital]: https://www.digital.govt.nz/digital-government/strategy/strategy-summary/strategy-for-a-digital-public-service/
 [CID3851]: https://www.nzism.gcsb.govt.nz/ism-document#3851
 [AzureWAFRefArch]: https://docs.microsoft.com/en-us/azure/architecture/example-scenario/gateway/firewall-application-gateway
+[AzureMgmtGroupDesign]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/management-group-and-subscription-organization
