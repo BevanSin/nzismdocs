@@ -39,7 +39,7 @@ The second is your own risk and compliance assessment capability - this is your 
 
 If you determine that it is not required, you can create an exemption in the Azure Policy console for that resource, and document why it is not required.
 
-The other thing to understand is that you shouldn't require this policy initiative in environments such as Sandpit or Development if they do not contain information that requires the controls included in the NZ ISM Restricted template.  I highly recommend you review the Management Group structure design guidance in the [Enterprise Scale architecture documentation here][AzureMgmtGroupDesign].  This shows how you should lay out the management groups and subscriptions in your Azure environment, which will allow you to apply policy at a top level to ensure compliance across the organisation.
+The other thing to understand is that you shouldn't require this policy initiative in environments such as Sandpit or Development if they do not contain information that requires the controls included in the NZ ISM Restricted template.  I highly recommend you review the Management Group structure design guidance in the [Enterprise Scale architecture documentation here][AzureMgmtGroupDesign].  This shows how you should lay out the management groups and subscriptions in your Azure environment, which will allow you to apply policy at a top level to ensure compliance across the organisation.  Equally important, is blocking policy inheritance for specific environments to ensure that development or sandpit subscriptions are not restricted by standards that do not apply, or incur cost deploying artifact's that are not required.
 
 ## Reference Links
 * [New Zealand ISM][NZISM]
