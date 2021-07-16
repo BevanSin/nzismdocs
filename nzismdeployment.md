@@ -3,6 +3,9 @@
 
 <br/>
 
+## Update 17 June 2021
+The latest version of the NZ ISM Blueprint and Policy Initiative are now live in the Azure portal.  If you have deployed this using the Security Center Regulatory Compliance then this will be updated automatically.  If you have created your own custom policy from the sample, then you will need to update your policies from the new version published in the console.  As ever, all feedback is encouraged - please let me know!
+
 ## Overview
 One of the challenges that government agencies have in their transition from a traditional on premises style data center to a public cloud data center is ensuring that compliance to specific security and regulatory standards is maintained.  In an on premises world the patterns for compliance are well established, and have cadences that can be controlled through defined change and assessment process.  These processes also have timelines that can wait for capability or people to be available, and wrap around technology that has a long runway for change because the agency or their service provider controls the pace of change.  In the public cloud world the pace of change is a lot faster and does not wait for any single customer to be ready, so the process for assessing compliance, and ensuring services are built in a compliant way needs to move just as quickly.
 
