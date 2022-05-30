@@ -95,7 +95,7 @@ As feedback is received from the community, and as new policy settings are devel
 
 Using Azure DevOps to check in the code, version it and deploy it to Azure is an automated and auditable process that is highly recommended to streamline this process.
 
-## Security Center and Exporting a report
+## Microsoft Defender for Cloud and exporting a report
 
 The NZ ISM Policy Inititiative is now available as a built in compliance report in the Microsoft Defender for Cloud dashboard.
 
