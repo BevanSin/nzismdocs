@@ -1,38 +1,9 @@
-# New Zealand ISM Restricted Azure Policy Initiative v3.5
+# New Zealand ISM Restricted Azure Policy Initiative Deployment
 ![banner]
 
 <br/>
 
-## Update 01 June 2022
-The latest update for the NZISM Policy Initiative is now live to bring it up to date with the version of the New Zealand Information Security Manual v3.5 which was published earlier this year.  This update introduces a series of changes and updates due to feedback from the community, changes to the underlying platform and changes to the services in Azure.  As ever, always evolving and updating!
-
-## Overview
-One of the challenges that government agencies have in their transition from a traditional on premises style data center to a public cloud data center is ensuring that compliance to specific security and regulatory standards is maintained.  In an on premises world the patterns for compliance are well established, and have cadences that can be controlled through defined change and assessment process.  These processes also have timelines that can wait for capability or people to be available, and wrap around technology that has a long runway for change because the agency or their service provider controls the pace of change.  In the public cloud world the pace of change is a lot faster and does not wait for any single customer to be ready, so the process for assessing compliance, and ensuring services are built in a compliant way needs to move just as quickly.
-
-In New Zealand, our government agency responsible for establishing the guidelines is the [GCSB] (Government Communications Security Bureau) and they have established a standard that agencies must adhere to depending on the classification level of the information being stored in the platform.  They have recognized that as the government heads to a more [Digital][NZGovDigital] strategy, the standards, compliance and methods must move apace to ensure that the government can move faster while maintaining security standards.  Alongside this, the complexity and breadth of security threats is outside the capability of many agencies to respond to individually, creating a risk for all of government.
-
-> [Digital][NZGovDigital] is about more than new technologies and improving IT systems. It also means doing things differently using new mindsets, skills, data and technologies to overcome barriers and better meet New Zealand’s needs.
-
-Microsoft has worked with many customers and regulatory bodies to produce artifacts that enable them to work safely in public cloud environments.  These include documented processes for establishing good practice for [development][AppArch], [landing zone][LZ] design patterns, and frameworks for [Cloud Adoption][CAF].  We have also worked with government to help establish patterns to assess compliance for Azure environments, and the published those to be consumable via the Azure Portal.  Those objects are our [Azure Blueprints][AzureBP], [Azure Policies][AzurePolicy] and [Azure Policy Initiatives][AzurePolicyInit].
-
-We also published a set of tenets to improve the quality of a workload once it has been established in Azure called the [Microsoft Azure Well-Architected Framework][WAF].  The framework consists of five pillars of architecture excellence: Cost Optimization, Operational Excellence, Performance Efficiency, Reliability, and Security.
-
-An area that both NZ Government and Microsoft recognised that could assist New Zealand agencies and companies in cloud adoption was a translation of the NZ ISM Restricted into a set of policies that could allow the implementor a method of measuring their environment against the standard defined by the NZ ISM.  To that end, Microsoft and the GCSB worked together to establish an Azure Policy Initiative and Azure Blueprint to be published in the Azure gallery.  This allows any agency or New Zealand company to apply the standard to their Azure environment, and assess their level of compliance against a defined NZ Government standard.
-
-The outcome of this is creating a known good baseline that every agency can adhere to, raising the base level of security across all New Zealand government.  As this is also policy as code, the process for updating and adjusting to a fast moving threat landscape becomes easier, ensuring that the risk can be reduced.  As this baseline is publicly available in the Azure gallery, New Zealand business can also adopt it, raising the bar across all of New Zealand.
-
-## Whats changed?
-
-This policy initiative was orginally developed in early 2021 and has been deployed in a large number of NZ tenants, both government and non-government.  This is a great sign that business and agencies are looking to the GCSB and Microsoft for guidance in security when operating in cloud environments.  The GCSB was also recognised with its partners for this work, and won the [iSANZ Best Security Project or Security Awareness Initiative award][isanz] for 2021.
-
-The underlying technology for managing the initiative has also moved forward.  The Blueprint that this Policy Initiative originally was deployed alongside is being deprecated as the Azure Blueprint service changes path.  Like all Azure services, this is due to the usage patterns of the people who consume Azure services, requests from the community and innovation from the Microsoft engineering team.  When we deployed the NZISM initiative in the past, the blueprint was not used as most companies manage their subscriptions and environments in different ways.  As this is not used, we dropped it from the NZISM scope as it seemed to add no benefit.  Also, as the Defender for Azure capability evolved, more focus was put on integrating with that console as it was the main dashboard that compliance staff interacted with the output for the initiative.
-
-One of the challenges in the community was how to know which version of the NZ ISM you were being compliant with.  The version of the initiative and the NZISM are not linked, so while the NZISM is not at v3.5 as of June 2022, the Policy Initiative is on v9.0.  To remedy this, we changed the name to include the version number to make that more clear.  So the new release will be called New Zealand ISM Restricted v3.5.
-
-Another issue is change control - by default, many organisations simply deployed the NZ ISM Initiative directly from the gallery into their tenant. While this will still acheive the outcome of applying the initiative to the customer tenant, the issue is that it is the object that was published by Microsoft.  So when Microsoft update that initiative due to policy deprecation, response to a bug or change in policy feature, the initiative the customer has deployed will be automatically updated as well.  Most of the time this is not an issue, but it does raise the issue of change control, and good policy management in Azure.  From a change control perspective, the customer loses the ability to know exactly when change is occuring, so if an issue does arise it may take some time to track down the root cause.  And good policy management means that you deploy policy to test areas first to ensure that changes will not cause a problem, before deploying to the wider environment.
-To address this it is recommended that the initiative is copied, and then deployed as per the instructions in this document.  This ensures that a unique resource is created in the customer tenant, and updates can be deployed following the change control process established by the customer.
-
-## What is a Policy Initiative?
+## What is an Azure Policy Initiative?
 Azure Policy evaluates resources in Azure by comparing the properties of those resources to business rules. These business rules, described in JSON format, are known as policy definitions. To simplify management, several business rules can be grouped together to form a [policy initiative][AzurePolicyInit]. Once your business rules have been formed, the policy definition or initiative is assigned to any scope of resources that Azure supports, such as management groups, subscriptions, resource groups, or individual resources. The assignment applies to all resources within the Resource Manager scope of that assignment. Subscopes can be excluded, if necessary. For more information, see [Scope in Azure Policy][AzurePolicyScope].
 
 Multiple policies can be deployed against the same subscriptions.  Agencies that must adhere to government regulation, industry regulation and their own internal policies can layer them to ensure that they adhere to all.  You can also disable enforcement on some, to ensure that you are reporting on compliance only and reducing the complexity of layers of enforcement.  [Planning policy layering][AzurePolEvaluate] in this way requires some thought and design to ensure there is no policy collision but a simple way to manage it is to use naming conventions on the policy objects to identify which ones you are enforcing and which ones you are not.  Disabling enforcement mode is also a good way of testing the impact of new settings.
@@ -48,17 +19,27 @@ All Azure Policy data and objects are encrypted at rest. For more information, s
 
 ## How to deploy the NZ ISM Restricted Policy Initiative
 
-When deploying the Policy initiative, the key thing to rememeber is that you need to create a resource based on the gallery item, not use the gallery item directly.  This is to make sure that the object you deploy to your tenant is a unique object.  That way, when Microsoft updates the policy initiative, your copy is unaffected - you own the change and update process, and you can use your policy update and release process to check the new version wont have any impact on the resources in your tenant.  Of course, this means you need to *have* a change and release process for policy, and someone responsible for monitoring the updates to the initiative.  But this is part of good governance of a cloud environment as laid out in the [Cloud Adoption Framework][CAF-GOV]
+Deployment of the policy initiative depends on how you manage your regulatory compliance in Azure.  You can deploy it manually through the Azure Policy blade, or via the Regulatory Compliance capability in Microsoft Defender for cloud.  For an automated solution, you can use Azure DevOps to assign a specific version from the gallery.  This is an automated and auditable process that is highly recommended to streamline this process.
 
-1. Select All services in the left pane. Search for and select Policy.
-2. Click on Definitions
-3. In the Search field type New Zealand and the New Zealand ISM Restricted policy should be listed
-4. Click the ellipsis at the end of the line and select Assign
-5. Set the scope by selecting the Subscription this policy will apply to - alternatively you can apply it to a Management group to ensure it applies to all subscriptions
-> Note: The Policy Enforcement switch here allows you to disable any Enforcement policies and only return compliance if required.  At the time of writing all explicit deny policies had been removed from this template as it is primarily designed to report on compliance, and not enforce, a specific security template.  This is also a good way of testing the impact of new policies.
-6. Click Parameters.  There should be no parameters to configure with v3.5 but if there are due to future changes, you will be prompted to put entries in for those parameters here. 
-7. Click Review and Create.  Notice on this last screen the specific settings that require input are listed here in the Parameters section along with your entries.  Its a good way to ensure you have configured the correct parameters if they are required.
-8. Click Create.
+When deploying the NZ ISM Policy Initiative manually, you can deploy it from the Azure Policy blade in the Azure Portal.
+
+1. In the Azure portal, click in the search bar at the top and type Policy, and then click on Policy under Services
+2. Expand Authoring and click on Definitions
+3. In the Search field type New Zealand and the New Zealand ISM policy should be listed
+4. Click the ellipsis at the end of the line and select Assign Initiative
+5. Set the scope by selecting the Subscription or Resource Group this policy will apply to.
+6. Exclude any subscopes if required by clicking on the Exclude subscopes link and selecting specific resource groups or resources to exclude.
+7. Click the ellipsis next to the Version field. 
+8. If required, update the Assignment Name, perhaps to include the version number of the NZISM you are aligning to.
+9. Set Policy Enforcement to Disabled.  
+> Note: The Policy Enforcement switch here allows you to disable any Enforcement policies and only return compliance if required.  It is recommended to disable enforcement for all compliance policies as this process is about reporting compliance to a standard, not enforcement.
+10. Click Next 
+11. In the Parameters screen, set the Minimum RSA Key Size to 2048 and leave all other entries as default.
+12. Click Next
+13. Leave the Remediation Managed Identity as disabled and click Next
+14. Leave the default Non-Compliance messages and click Next.
+15. Click Review and Create.  Notice on this last screen the specific settings that require input are listed here in the Parameters section along with your entries.  Its a good way to ensure you have configured the correct parameters if they are required.
+
 
 ## How to measure compliance
 
@@ -105,21 +86,7 @@ You can view your compliance as a more detailed dashboard, and also export this 
 
 [See here for more information on how this works][DfCRegComp].
 
-## Feedback
-An important aspect of this policy initiative is to establish a feedback loop between the government agencies, the policy creators and the technology partners.  Working together as a community will ensure that as our technology evolves, so does the governance and management strategy.  It also means that all participants can leverage the shared learnings from establishment through to consumption.
 
-We welcome feedback on things that can improve the artifact's we have published.  Microsoft will be working with the NZ Government to continue to update the Policy Initiative in future to ensure the Azure gallery items stay in step with the standards published by the NZ government.
-
-To that end, for all feedback or questions on the NZ ISM Restricted Policy Initiative, please feel free to contact me at bevan.sinclair@microsoft.com, or simply talk to your Microsoft account team who can assist.  For feedback on the NZ ISM Restricted standard itself please send all requests to nzism@gcsb.govt.nz.
-
-Any items that merit more discussion, or we identify as items that the community would benefit with more in depth understanding can be found in the other markdown document [NZ ISM Discussion][NZISMDiscussion]
-
-## Thanks to
-This work has been and continues to be a team effort so thanks to the staff at the New Zealand GCSB and NCSC, the agencies who gave their time to pilot the policies, and the internal Microsoft team.  Together we are all working towards setting a great baseline of security for all of New Zealand in the (long white) Cloud.  Also thanks to the Linked In community who have proffered valuable insights and shared the content (@davidwhitenz at Theta!).
-
-## Reference Links
-* [New Zealand ISM][NZISM]
-* [New Zealand Strategy for a Digital Public Service][NZGovDigital]
 
 
 <!-- Local -->
@@ -157,3 +124,4 @@ This work has been and continues to be a team effort so thanks to the staff at t
 [NZISMDiscussion]: https://github.com/BevanSin/nzismdocs/blob/master/nzismdiscussion.md
 [CAF-GOV]: https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/govern/guides/standard/security-baseline-improvement
 [isanz]: https://www.isanz.org.nz/#entries
+[AzurePolicyVersioning]: https://techcommunity.microsoft.com/t5/azure-governance-and-management/public-preview-announcement-azure-policy-built-in-versioning/ba-p/4186105
